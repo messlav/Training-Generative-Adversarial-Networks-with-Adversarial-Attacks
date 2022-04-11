@@ -38,23 +38,19 @@ def train_gan_w_fgsm(dataloader, net_D, net_G, num_epochs, loss_fn, optim_G, opt
                 z = torch.randn(128, 100).to(device)
                 fake = net_G(z).detach()
             real = data[0].to(device)
+            real.requires_grad = True
+            fake.requires_grad = True
+            net_D_real = net_D(real)
+            net_D_fake = net_D(fake)
+            loss_D = loss_fn(net_D_real, net_D_fake)
             if epoch >= start_fgsm_epoch and np.random.random() < fgsm_chance:
                 # FGSM
-                real.requires_grad = True
-                fake.requires_grad = True
-                net_D_real = net_D(real)
-                net_D_fake = net_D(fake)
-                loss_D = loss_fn(net_D_real, net_D_fake)
                 real_grad = torch.autograd.grad(loss_D, [real])[0]
                 fake_grad = torch.autograd.grad(loss_D, [fake])[0]
                 perturbed_real = fgsm_attack(real, epsilon, real_grad)
                 perturbed_fake = fgsm_attack(fake, epsilon, fake_grad)
                 net_D_real = net_D(perturbed_real)
                 net_D_fake = net_D(perturbed_fake)
-                loss_D = loss_fn(net_D_real, net_D_fake)
-            else:
-                net_D_real = net_D(real)
-                net_D_fake = net_D(fake)
                 loss_D = loss_fn(net_D_real, net_D_fake)
             
             optim_D.zero_grad()
@@ -126,3 +122,4 @@ def train_gan_w_fgsm(dataloader, net_D, net_G, num_epochs, loss_fn, optim_G, opt
         
     print('Training for batch size = {}, epochs = {} done for {:.1f} hours'.format(batch_size, num_epochs, (time.time() - start) / 60 / 60))
     wandb.finish()
+
