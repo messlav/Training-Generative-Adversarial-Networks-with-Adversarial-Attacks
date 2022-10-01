@@ -19,11 +19,16 @@ attacks on Discriminator, that will work like regularization
 
 ## Main results
 • Developed a theory of GAN Adversarial Training
+
 Adversarial Attacks were investigated on the following GANs:
-• WGAN: Huge improvement of key metrics, stabilizing Generator loss.
-• WGAN-GP: Similar results as in the classic version, destabilizing Discrim- inator loss.
-• DCGAN: Similar results as in the classic version.
-• SNGAN: Small improvement in key metrics, stabilizing Generator loss.
+	
+	• WGAN: Huge improvement of key metrics, stabilizing Generator loss.
+	
+	• WGAN-GP: Similar results as in the classic version, destabilizing Discrim- inator loss.
+
+	• DCGAN: Similar results as in the classic version.
+	
+	• SNGAN: Small improvement in key metrics, stabilizing Generator loss.
 
 Almost 100 experiments were conducted with different implementations and hyperparameters, spent more than 30 days of computing resources, 4 different GAN architectures were explored with FGSM 
 attacks.
@@ -34,5 +39,12 @@ This research was supported in part through computational resources of [HPC faci
 
 # Navigation
 
+[Coursework paper](https://github.com/messlav/Training-Generative-Adversarial-Networks-with-Adversarial-Attacks/blob/main/coursework.pdf)
+
+[Presentation of work](https://github.com/messlav/Training-Generative-Adversarial-Networks-with-Adversarial-Attacks/blob/main/presentation.pdf)
+
+[All scripts](https://github.com/messlav/Training-Generative-Adversarial-Networks-with-Adversarial-Attacks/tree/main/scripts)
+
+[Some useful notebooks](https://github.com/messlav/Training-Generative-Adversarial-Networks-with-Adversarial-Attacks/tree/main/notebooks)
 
 
